@@ -23,26 +23,41 @@ export default function Feedback() {
   ];
 
   return (
-    <div id={'feedback'} className={'px-[160px] pt-[100px] text-[20px]'}>
-      <h2 className={'text-[60px] text-center font-bold mb-10'}>Отзывы</h2>
-      <ul className={'grid grid-cols-2 gap-8'}>
+    <section
+      id="feedback"
+      className="px-[160px] md:px-6 pt-[100px] text-[20px]"
+      aria-labelledby="feedback-title"
+    >
+      <h2
+        id="feedback-title"
+        className="text-[60px] text-center font-bold mb-10"
+      >
+        Отзывы
+      </h2>
+
+      <ul
+        className="grid grid-cols-1 gap-8 w-[80%] md:w-full mx-auto"
+        role="list"
+        aria-label="Customer feedback"
+      >
         {data.map((item, index) => (
           <li
             key={index}
-            className={`flex shadow-md rounded-md h-[400px] overflow-hidden`}
+            className={`flex shadow-md rounded-md overflow-hidden ${index % 2 === 1 ? 'flex-row-reverse' : 'flex-row'}`}
+            aria-label={`Feedback from ${item.name}`}
           >
             <img
               src={item.image}
-              alt={item.name}
-              className={'h-full object-contain object-center'}
+              alt={`Фото ${item.name}`}
+              className="h-[400px] object-contain object-center"
             />
-            <div className={'text-[18px] p-4 flex flex-col gap-2'}>
-              <div className={'font-bold'}>{item.name}</div>
-              <p>{item.text}</p>
+            <div className="text-[18px] md:text-[16px] p-4 flex flex-col gap-2 flex-1 overflow-auto">
+              <h3 className="font-bold">{item.name}</h3>
+              <p className={'text-justify md:text-left'}>{item.text}</p>
             </div>
           </li>
         ))}
       </ul>
-    </div>
+    </section>
   );
 }
