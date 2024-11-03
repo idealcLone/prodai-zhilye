@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 export default function Hero() {
   // const handleSubmit = async (e) => {
   //   e.preventDefault();
@@ -26,10 +28,11 @@ export default function Hero() {
       aria-label="Hero section for apartment buying service in Almaty"
     >
       <div className="absolute top-0 left-0 w-screen h-screen -z-50">
-        <img
+        <Image
           src="/hero.jpg"
           alt="Background showing apartments in Almaty, Kazakhstan"
           className="w-full h-full object-cover object-center"
+          fill={true}
         />
       </div>
       <div
@@ -38,7 +41,7 @@ export default function Hero() {
         }
       />
 
-      <header className="text-white px-[160px] md:px-6 mt-[110px]">
+      <header className="text-white px-[160px] md:px-6 mt-[110px] md:mt-10">
         <h1 className="font-bold text-[80px] leading-[1.1] uppercase">
           Срочный <br /> <span className="text-orange-500">выкуп</span> квартир{' '}
           <br /> <span className="lowercase">в</span>{' '}
@@ -53,7 +56,7 @@ export default function Hero() {
         </ul>
 
         <form
-          className="flex gap-4 md:flex-col mt-20"
+          className="flex gap-4 md:flex-col mt-20 md:mt-4"
           aria-labelledby="consultation-form"
         >
           <div className="flex flex-col gap-2 w-[300px]">
@@ -72,7 +75,7 @@ export default function Hero() {
           </div>
           <button
             type="submit"
-            className="h-[40px] self-end bg-orange-500 font-semibold px-6"
+            className="h-[40px] self-end md:self-start bg-orange-500 font-semibold px-6"
             aria-label="Request a callback"
           >
             Заказать звонок
