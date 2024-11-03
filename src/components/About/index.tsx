@@ -7,7 +7,7 @@ export default function About() {
             О сервисе <br />
             <strong>ПродайЖилье</strong>
           </h2>
-          <figure className="mr-[20px] mt-[120px] text-center relative">
+          <figure className="mr-[20px] mt-[120px] text-center relative overflow-hidden">
             <div className="font-bold text-[90px]">1200+</div>
             <figcaption>квартир уже выкуплено нами</figcaption>
             <div className="-z-50 absolute w-[750px] border-[2px] top-1/2 left-[70%] -translate-x-1/2 -translate-y-1/2 border-yellow-400 rounded-full aspect-square"></div>

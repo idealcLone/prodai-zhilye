@@ -18,7 +18,7 @@ export default function Footer() {
       </section>
 
       <section
-        className="flex flex-col gap-6"
+        className="flex flex-col gap-6 max-w-full"
         aria-labelledby="contact-form-title"
       >
         <h3 id="contact-form-title" className="sr-only">
@@ -31,7 +31,7 @@ export default function Footer() {
           type="text"
           id="name"
           placeholder="Имя"
-          className="w-[400px] bg-blue-300 text-white border-b border-white pb-2 placeholder:text-white outline-none text-[18px]"
+          className="w-[400px] max-w-full bg-blue-300 text-white border-b border-white pb-2 placeholder:text-white outline-none text-[18px]"
         />
 
         <label htmlFor="phone" className="sr-only">
@@ -41,7 +41,7 @@ export default function Footer() {
           type="tel"
           id="phone"
           placeholder="Телефон"
-          className="w-[400px] bg-blue-300 text-white border-b border-white pb-2 placeholder:text-white outline-none text-[18px]"
+          className="w-[400px] max-w-full bg-blue-300 text-white border-b border-white pb-2 placeholder:text-white outline-none text-[18px]"
         />
 
         <label htmlFor="comment" className="sr-only">
@@ -50,7 +50,7 @@ export default function Footer() {
         <textarea
           id="comment"
           placeholder="Комментарий (не обязательно)"
-          className="w-[400px] bg-blue-300 text-white border-b border-white pb-2 placeholder:text-white outline-none text-[18px]"
+          className="w-[400px] max-w-full bg-blue-300 text-white border-b border-white pb-2 placeholder:text-white outline-none text-[18px]"
         />
 
         <button
