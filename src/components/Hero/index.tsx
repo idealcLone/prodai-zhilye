@@ -52,7 +52,10 @@ export default function Hero() {
           <li>Оценка за наш счет</li>
         </ul>
 
-        <form className="flex gap-4 mt-20" aria-labelledby="consultation-form">
+        <form
+          className="flex gap-4 md:flex-col mt-20"
+          aria-labelledby="consultation-form"
+        >
           <div className="flex flex-col gap-2 w-[300px]">
             <label htmlFor="phone" id="consultation-form">
               Оставьте заявку для бесплатной консультации:

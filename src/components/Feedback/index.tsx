@@ -43,7 +43,7 @@ export default function Feedback() {
         {data.map((item, index) => (
           <li
             key={index}
-            className={`flex shadow-md rounded-md overflow-hidden ${index % 2 === 1 ? 'flex-row-reverse' : 'flex-row'}`}
+            className={`flex md:flex-col shadow-md rounded-md overflow-hidden ${index % 2 === 1 ? 'flex-row-reverse' : 'flex-row'}`}
             aria-label={`Feedback from ${item.name}`}
           >
             <img

@@ -2,7 +2,7 @@ export default function Comparison() {
   return (
     <section
       id="advantages"
-      className="overflow-hidden"
+      className="overflow-auto"
       aria-labelledby="comparison-title"
     >
       <h3
@@ -13,7 +13,7 @@ export default function Comparison() {
       </h3>
 
       <table
-        className="mx-auto rounded-md overflow-auto"
+        className="mx-auto rounded-md"
         aria-label="Comparison of ПродайЖилье and standard selling methods"
       >
         <thead className="uppercase">
