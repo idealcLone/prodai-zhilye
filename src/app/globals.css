@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    line-height: 1.2;
+    scroll-behavior: smooth;
+}
+
+
+tbody {
+    tr {
+        &:nth-child(even) {
+            @apply bg-neutral-200;
+        }
+
+        &:nth-child(odd) {
+            @apply bg-neutral-100;
+        }
+
+        td {
+            @apply border border-neutral-300;
+        }
+    }
+}
+
+thead {
+    th {
+        @apply pb-6;
+    }
+}
+
+td {
+    @apply px-20 py-6;
+}
