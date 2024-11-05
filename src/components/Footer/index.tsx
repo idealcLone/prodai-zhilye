@@ -1,4 +1,4 @@
-async function handleSubmit(formData) {
+async function handleSubmit(formData: FormData) {
   'use server';
 
   const name = formData.get('name');
@@ -7,7 +7,7 @@ async function handleSubmit(formData) {
 
   const text = `Поступила завяка для бесплатной консультации\nИмя: ${name}\nНомер: ${phone}\nКоммент: ${comment}`;
 
-  const response = await fetch('https://inticus.com/bot/send-message', {
+  await fetch('https://inticus.com/bot/send-message', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -18,14 +18,6 @@ async function handleSubmit(formData) {
       chatId: '392596958',
     }),
   });
-
-  if (response.ok) {
-    // Return success status
-    return { success: true };
-  } else {
-    // Return error status
-    return { success: false };
-  }
 }
 
 export default function Footer() {

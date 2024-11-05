@@ -1,15 +1,13 @@
 import Image from 'next/image';
 
-async function handleSubmit(formData) {
+async function handleSubmit(formData: FormData) {
   'use server';
 
   const phone = formData.get('phone');
 
   const text = `Поступила завяка для бесплатной консультации\nНомер: ${phone}`;
 
-  console.log(text);
-
-  const response = await fetch('https://inticus.com/bot/send-message', {
+  await fetch('https://inticus.com/bot/send-message', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -20,14 +18,6 @@ async function handleSubmit(formData) {
       chatId: '392596958',
     }),
   });
-
-  if (response.ok) {
-    // Return success status
-    return { success: true };
-  } else {
-    // Return error status
-    return { success: false };
-  }
 }
 
 export default function Hero() {
