@@ -1,27 +1,36 @@
 import Image from 'next/image';
 
-export default function Hero() {
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //
-  //   const response = await fetch('/api/callback', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({ name, phone, comment }),
-  //   });
-  //
-  //   if (response.ok) {
-  //     alert('Callback request sent successfully!');
-  //     setName('');
-  //     setPhone('');
-  //     setComment('');
-  //   } else {
-  //     alert('Failed to send callback request.');
-  //   }
-  // };
+async function handleSubmit(formData) {
+  'use server';
 
+  const phone = formData.get('phone');
+
+  const text = `Поступила завяка для бесплатной консультации\nНомер: ${phone}`;
+
+  console.log(text);
+
+  const response = await fetch('https://inticus.com/bot/send-message', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      text,
+      telegramUserId: '392596958',
+      chatId: '392596958',
+    }),
+  });
+
+  if (response.ok) {
+    // Return success status
+    return { success: true };
+  } else {
+    // Return error status
+    return { success: false };
+  }
+}
+
+export default function Hero() {
   return (
     <section
       className="h-full mb-[150px] relative flex items-center"
@@ -58,6 +67,7 @@ export default function Hero() {
         <form
           className="flex gap-4 md:flex-col mt-20 md:mt-4"
           aria-labelledby="consultation-form"
+          action={handleSubmit}
         >
           <div className="flex flex-col gap-2 w-[300px]">
             <label htmlFor="phone" id="consultation-form">
@@ -65,9 +75,9 @@ export default function Hero() {
             </label>
             <input
               id="phone"
+              name="phone" // Add the name attribute
               type="tel"
               placeholder="+7 777 777 77 77"
-              pattern="\+7 \d{3} \d{3} \d{2} \d{2}"
               required
               aria-required="true"
               className="text-black h-[40px] px-4"
@@ -78,7 +88,7 @@ export default function Hero() {
             className="h-[40px] self-end md:self-start bg-orange-500 font-semibold px-6"
             aria-label="Request a callback"
           >
-            Заказать звонок
+            {'Заказать звонок'}
           </button>
         </form>
       </header>

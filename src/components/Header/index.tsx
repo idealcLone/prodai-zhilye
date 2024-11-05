@@ -12,11 +12,27 @@ export default function Header() {
         className="flex justify-between items-center gap-4"
         aria-label="Main navigation"
       >
-        <h1 className="font-bold text-[24px]">
-          <Link href="/" aria-label="Homepage link for ПродайЖилье">
-            ПродайЖилье
-          </Link>
-        </h1>
+        <div className={'flex gap-10 items-center'}>
+          <h1 className="font-bold text-[24px]">
+            <Link
+              href="/"
+              aria-label="Homepage link for ПродайЖилье"
+              className={'text-orange-500'}
+            >
+              ПродайЖилье
+            </Link>
+          </h1>
+          <div>
+            <a
+              href="tel:+77777982306"
+              className={'text-[20px]'}
+              aria-label="Order a callback"
+            >
+              <div className={'underline'}>Звоните прямо сейчас:</div>
+              <div className={'font-bold'}>+77777982306</div>
+            </a>
+          </div>
+        </div>
 
         <div className="flex items-center gap-10 md:gap-4 text-[20px]">
           <a
@@ -50,7 +66,7 @@ export default function Header() {
           {!isOpen && (
             <div
               onClick={() => setIsOpen(true)}
-              className={'flex gap-2 items-center cursor-pointer'}
+              className={'flex gap-2 items-center cursor-pointer text-[24px]'}
             >
               <div className="md:hidden">
                 Свяжитесь с нами прямо сейчас &rarr;
@@ -62,7 +78,7 @@ export default function Header() {
             </div>
           )}
           {isOpen && (
-            <div>
+            <div className={'text-[24px]'}>
               <div>
                 <a href="tel:+77777982306" aria-label="Order a callback">
                   Заказать звонок: <strong>+77777982306</strong>
@@ -79,7 +95,7 @@ export default function Header() {
                   Свяжитесь с нами прямо сейчас &rarr;
                 </div>
                 <i
-                  className="fa-brands fa-square-whatsapp text-[28px] text-green-500"
+                  className="fa-brands fa-square-whatsapp text-[36px] text-green-500"
                   aria-hidden="true"
                 ></i>
               </a>
