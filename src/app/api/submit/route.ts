@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
     text += `Коммент: ${comment}`;
   }
 
-  const response = await fetch('https://inticus.com/bot/send-message', {
+  const response = await fetch('http://localhost:8087/bot/send-message', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
