@@ -51,8 +51,8 @@ export async function POST(req: NextRequest) {
     },
     body: JSON.stringify({
       text,
-      telegramUserId: '444165791',
-      chatId: '444165791',
+      telegramUserId: '392596958',
+      chatId: '392596958',
     }),
   });
 
