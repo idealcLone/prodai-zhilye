@@ -1,23 +1,22 @@
+'use client';
+
 import Image from 'next/image';
+import { toast } from 'react-toastify';
 
-async function handleSubmit(formData: FormData) {
-  'use server';
-
+async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  event.preventDefault();
+  const formData = new FormData(event.currentTarget);
   const phone = formData.get('phone');
 
-  const text = `Поступила завяка для бесплатной консультации\nНомер: ${phone}`;
-
-  await fetch('https://inticus.com/bot/send-message', {
+  await fetch('/api/submit', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({
-      text,
-      telegramUserId: '392596958',
-      chatId: '392596958',
-    }),
+    body: JSON.stringify({ phone }),
   });
+
+  toast.success('Заявка успешно отправлена!');
 }
 
 export default function Hero() {
@@ -57,7 +56,7 @@ export default function Hero() {
         <form
           className="flex gap-4 md:flex-col mt-20 md:mt-4"
           aria-labelledby="consultation-form"
-          action={handleSubmit}
+          onSubmit={(event) => handleSubmit(event)}
         >
           <div className="flex flex-col gap-2 w-[300px]">
             <label htmlFor="phone" id="consultation-form">
@@ -65,7 +64,7 @@ export default function Hero() {
             </label>
             <input
               id="phone"
-              name="phone" // Add the name attribute
+              name="phone"
               type="tel"
               placeholder="+7 777 777 77 77"
               required

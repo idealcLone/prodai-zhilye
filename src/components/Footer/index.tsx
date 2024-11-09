@@ -1,26 +1,30 @@
-async function handleSubmit(formData: FormData) {
-  'use server';
+'use client';
 
-  const name = formData.get('name');
-  const phone = formData.get('phone');
-  const comment = formData.get('comment');
-
-  const text = `Поступила завяка для бесплатной консультации\nИмя: ${name}\nНомер: ${phone}\nКоммент: ${comment}`;
-
-  await fetch('https://inticus.com/bot/send-message', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      text,
-      telegramUserId: '392596958',
-      chatId: '392596958',
-    }),
-  });
-}
+import { toast } from 'react-toastify';
 
 export default function Footer() {
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const name = formData.get('name');
+    const phone = formData.get('phone');
+    const comment = formData.get('comment');
+
+    await fetch('/api/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name,
+        phone,
+        comment,
+      }),
+    });
+
+    toast.success('Заявка успешно отправлена!');
+  };
+
   return (
     <footer
       id="contacts"
@@ -42,7 +46,7 @@ export default function Footer() {
       <form
         className="flex flex-col gap-6 max-w-full"
         aria-labelledby="contact-form-title"
-        action={handleSubmit}
+        onSubmit={onSubmit}
       >
         <h3 id="contact-form-title" className="sr-only">
           Contact Form
@@ -53,9 +57,10 @@ export default function Footer() {
         <input
           type="text"
           id="name"
-          name="name" // Add the name attribute
+          name="name"
           placeholder="Имя"
           className="w-[400px] max-w-full bg-blue-300 text-white border-b border-white pb-2 placeholder:text-white outline-none text-[18px]"
+          required
         />
 
         <label htmlFor="phone" className="sr-only">
@@ -64,9 +69,10 @@ export default function Footer() {
         <input
           type="tel"
           id="phone"
-          name="phone" // Add the name attribute
+          name="phone"
           placeholder="Телефон"
           className="w-[400px] max-w-full bg-blue-300 text-white border-b border-white pb-2 placeholder:text-white outline-none text-[18px]"
+          required
         />
 
         <label htmlFor="comment" className="sr-only">
@@ -74,7 +80,7 @@ export default function Footer() {
         </label>
         <textarea
           id="comment"
-          name="comment" // Add the name attribute
+          name="comment"
           placeholder="Комментарий (не обязательно)"
           className="w-[400px] max-w-full bg-blue-300 text-white border-b border-white pb-2 placeholder:text-white outline-none text-[18px]"
         />
