@@ -1,12 +1,15 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { Alegreya_Sans } from 'next/font/google';
+import Script from 'next/script';
 
 const alegreyaSans = Alegreya_Sans({
   subsets: ['latin'],
   weight: ['300', '400', '700', '800'],
   style: ['normal', 'italic'],
 });
+
+const GA_TRACKING_ID = 'AW-16770491094';
 
 export const metadata: Metadata = {
   title: 'Продай жилье — Быстрая покупка квартиры за 1-2 дня',
@@ -52,6 +55,18 @@ export default function RootLayout({
             areaServed: 'Kazakhstan',
           })}
         </script>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${GA_TRACKING_ID}');
+        `}
+        </Script>
       </head>
       <body className={`${alegreyaSans.className} antialiased`}>
         {children}
