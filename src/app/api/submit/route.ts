@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
     text += `Коммент: ${comment}`;
   }
 
-  const response = await fetch('http://localhost:8087/bot/send-message', {
+  await fetch('http://localhost:8087/bot/send-message', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -55,10 +55,6 @@ export async function POST(req: NextRequest) {
       chatId: '444165791',
     }),
   });
-
-  const json = await response.json();
-
-  console.log(json);
 
   return NextResponse.json({ message: 'Request submitted successfully' });
 }
