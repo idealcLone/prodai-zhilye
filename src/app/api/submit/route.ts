@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
     text += `Коммент: ${comment}`;
   }
 
-  await fetch('https://inticus.com/bot/send-message', {
+  const response = await fetch('https://inticus.com/bot/send-message', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -55,6 +55,10 @@ export async function POST(req: NextRequest) {
       chatId: '444165791',
     }),
   });
+
+  const json = await response.json();
+
+  console.log(json);
 
   return NextResponse.json({ message: 'Request submitted successfully' });
 }
